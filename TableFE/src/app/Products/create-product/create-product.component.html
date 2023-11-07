@@ -20,12 +20,15 @@
             <option *ngFor="let store of stores" [value]="store.id">{{ store.name }}</option>
         </select>
     </div>
-    <div class="form-group">
-        <label for="colorId">Color:</label>
-        <select id="colorId" formControlName="colorId" class="form-control" required>
+    <div>     
+        <label for="color">Color:</label>
+        <select
+          formControlName="colorId"
+          id="color"
+          multiple
+          class="form-control">
           <option *ngFor="let color of colors" [value]="color.id">{{ color.name }}</option>
         </select>
-
       </div>
     <button type="submit" class="btn btn-primary">Save</button>
 </form>

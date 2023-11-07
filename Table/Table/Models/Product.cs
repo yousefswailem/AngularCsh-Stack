@@ -7,9 +7,8 @@ namespace Table.Models
   {
     public Product()
     {
-      OrderDetails = new HashSet<OrderDetail>();
-      Colors = new HashSet<Color>();
-      ProductColors = new HashSet<ProductColor>();
+      //OrderDetails = new HashSet<OrderDetail>();
+      ColorProducts = new HashSet<ColorProduct>();
 
     }
 
@@ -20,17 +19,13 @@ namespace Table.Models
     [Column(TypeName = "decimal(18,2)")]
     public decimal Price { get; set; }
 
-    [ForeignKey("Color")]
-    public int ColorId { get; set; }
-    public virtual Color? Color { get; set; }
-
     [ForeignKey("Store")]
     public int StoreId { get; set; }
     public virtual Store? Store { get; set; }
 
-    public virtual ICollection<OrderDetail> OrderDetails { get; set; }
-    public virtual ICollection<Color> Colors { get; set; }
-    public virtual ICollection<ProductColor> ProductColors { get; set; }
+
+    //public virtual ICollection<OrderDetail> OrderDetails { get; set; }
+    public virtual ICollection<ColorProduct> ColorProducts { get; set; }
 
 
 

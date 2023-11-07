@@ -3349,11 +3349,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\user\\OneDrive\\Documents\\ERP\\Projects\\Table\\Table\\Table.csproj",
+      "projectUniqueName": "C:\\Users\\user\\OneDrive\\Documents\\ERP\\Projects\\Stores\\AngularCsh-Stack\\Table\\Table\\Table.csproj",
       "projectName": "Table",
-      "projectPath": "C:\\Users\\user\\OneDrive\\Documents\\ERP\\Projects\\Table\\Table\\Table.csproj",
+      "projectPath": "C:\\Users\\user\\OneDrive\\Documents\\ERP\\Projects\\Stores\\AngularCsh-Stack\\Table\\Table\\Table.csproj",
       "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\user\\OneDrive\\Documents\\ERP\\Projects\\Table\\Table\\obj\\",
+      "outputPath": "C:\\Users\\user\\OneDrive\\Documents\\ERP\\Projects\\Stores\\AngularCsh-Stack\\Table\\Table\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\user\\AppData\\Roaming\\NuGet\\NuGet.Config",

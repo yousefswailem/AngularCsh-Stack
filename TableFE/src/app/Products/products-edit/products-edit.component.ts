@@ -31,8 +31,8 @@ export class ProductEditComponent implements OnInit {
     this.editForm = this.formBuilder.group({
       name: ['', [Validators.required, Validators.minLength(3)]],
       price: [null, [Validators.required, Validators.min(0)]],
-      color: [null, [Validators.required]],
-      store: [null, [Validators.required]],
+      colorId: [[], [Validators.required]], // Changed to an array to support multiple color IDs
+      storeId: [null, [Validators.required]],
     });
   }
 
@@ -44,13 +44,12 @@ export class ProductEditComponent implements OnInit {
       this.productService.getProduct(productId).subscribe((product) => {
         if (product) {
           this.editedProduct = product;
-
-          this.editForm.setValue({
-            name: this.editedProduct.name,
-            price: this.editedProduct.price,
-            color: this.editedProduct.color,
-            store: this.editedProduct.store,
-
+          this.setInitialColorSelections(product); // Ensure this function is properly setting the colorIds
+          this.editForm.patchValue({
+            name: product.name,
+            price: product.price,
+            storeId: product.storeId,
+            colorId: product.colorIds,
           });
         } else {
           console.log('Product not found.');
@@ -65,11 +64,11 @@ export class ProductEditComponent implements OnInit {
       // Set the current color if the product is loaded
       if (this.editedProduct) {
         this.editForm.patchValue({
-          color: this.colors.find(c => c.id === this.editedProduct.colorId),
+          color: this.colors.find(c => this.editedProduct.colorIds?.includes(c.id)) ?? null,
         });
       }
     });
-    
+
     this.storeService.getStores().subscribe((stores) => {
       this.stores = stores;
       // Set the current store if the product is loaded
@@ -80,19 +79,19 @@ export class ProductEditComponent implements OnInit {
       }
     });
   }
+  private setInitialColorSelections(product: Product) {
+    this.editForm.get('colorId')!.setValue(product.colorIds || []);
+  }
+
 
   updateProduct() {
     if (this.editForm.valid) {
-      const updatedData: Product = {
-        id: this.editedProduct.id,
-        name: this.editForm.get('name')?.value,
-        price: this.editForm.get('price')?.value,
-        colorName: this.editForm.get('color')?.value,
-        storeName: this.editForm.get('store')?.value,
-        store: this.editedProduct.store,
-        color: this.editedProduct.color,
-        colorId: this.editedProduct.colorId,
-        storeId: this.editedProduct.storeId,
+      const updatedData = {
+        ...this.editedProduct,
+        name: this.editForm.value.name,
+        price: this.editForm.value.price,
+        storeId: this.editForm.value.storeId,
+        colorId: this.editForm.value.colorId,
       };
 
       this.productService.upsertProduct(updatedData).subscribe({

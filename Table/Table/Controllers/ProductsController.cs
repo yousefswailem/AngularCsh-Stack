@@ -1,9 +1,8 @@
 using AngularC_.Data;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
-using Table.Models;
 using Microsoft.EntityFrameworkCore;
-using System.Threading.Tasks;
+using Table.Models;
 
 namespace Table.Controllers
 {
@@ -22,7 +21,11 @@ namespace Table.Controllers
     [HttpGet]
     public async Task<IActionResult> GetProducts()
     {
-      var products = await _context.Products.ToListAsync(); // Asynchronously get the list of products
+      var products = await _context.Products
+              .Include(z => z.ColorProducts)
+              .ThenInclude(z => z.Color)
+              .ToListAsync();
+
 
       if (products == null)
       {
@@ -31,51 +34,85 @@ namespace Table.Controllers
 
       return Ok(products);
     }
+
+
     [HttpPost("upsert")]
-    public async Task<IActionResult> UpsertProduct([FromBody] Product product, [FromBody] List<int> colorIds)
+    public async Task<IActionResult> UpsertProduct([FromBody] ProductDto productDto)
     {
-      if (product == null)
+      if (productDto == null)
       {
-        return BadRequest(new { message = "Product data is null" });
+        return BadRequest(new { message = "Product data is required." });
       }
 
-      // This is the correct way to check if the product exists in a many-to-many context
-      var existingProduct = await _context.Products
-          .Include(p => p.ProductColors)
-          .FirstOrDefaultAsync(p => p.Id == product.Id);
-
-      if (existingProduct == null)
+      if (productDto.ColorId == null || !productDto.ColorId.Any())
       {
-        // Add new product if it doesn't exist
+        return BadRequest(new { message = "At least one color must be specified for the product." });
+      }
+
+      // Validate if all color IDs exist
+      var validColorIds = _context.Colors.Where(c => productDto.ColorId.Contains(c.Id)).Select(c => c.Id).ToList();
+      if (validColorIds.Count != productDto.ColorId.Count)
+      {
+        return BadRequest(new { message = "One or more colors are invalid." });
+      }
+
+      Product product;
+
+      if (productDto.Id == 0) 
+      {
+        product = new Product
+        {
+          Name = productDto.Name ?? "Default Name",
+          Price = productDto.Price,
+          StoreId = productDto.StoreId,
+
+        };
+
         _context.Products.Add(product);
-        await _context.SaveChangesAsync();
+        await _context.SaveChangesAsync(); 
 
-        // Add color relations for the new product
-        foreach (var colorId in colorIds)
-        {
-          _context.ProductColor.Add(new ProductColor { ProductId = product.Id, ColorId = colorId });
-        }
-        await _context.SaveChangesAsync();
       }
-      else
+      else // Existing product case
       {
-        // Update existing product properties
-        existingProduct.Name = product.Name;
-        existingProduct.Price = product.Price;
-        existingProduct.StoreId = product.StoreId;
-        _context.Products.Update(existingProduct);
-
-        // Update color relationships for existing product
-        existingProduct.ProductColors.Clear(); // Remove existing relationships
-        foreach (var colorId in colorIds)
+        product = await _context.Products.FindAsync(productDto.Id);
+        if (product == null)
         {
-          existingProduct.ProductColors.Add(new ProductColor { ProductId = existingProduct.Id, ColorId = colorId });
+          return NotFound(new { message = "Product not found" });
         }
-        await _context.SaveChangesAsync();
+
+        // Update product details
+        product.Name = productDto.Name ?? product.Name; // Keep current name if null is provided
+        product.Price = productDto.Price;
+        product.StoreId = productDto.StoreId;
+        _context.Products.Update(product);
+
+        // Remove current color associations before adding new ones
+        var existingColors = _context.ColorProduct.Where(cp => cp.ProductId == product.Id);
+        _context.ColorProduct.RemoveRange(existingColors);
+        await _context.SaveChangesAsync(); // Important to save changes here
       }
 
-      return Ok(new { message = "Product upsert successful" });
+      // Add new color associations
+      foreach (var colorId in validColorIds)
+      {
+        _context.ColorProduct.Add(new ColorProduct { ColorId = colorId, ProductId = product.Id });
+      }
+
+      await _context.SaveChangesAsync(); // Save color associations
+
+      return Ok(new { message = $"Product {(productDto.Id == 0 ? "created" : "updated")} successfully" });
     }
+
+    public class ProductDto
+    {
+      public int Id { get; set; }
+      public string? Name { get; set; }
+      public decimal Price { get; set; }
+      public int StoreId { get; set; }
+      public List<int>? ColorId { get; set; }
+
+    }
+
 
 
   }

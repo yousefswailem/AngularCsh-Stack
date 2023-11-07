@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "5bxByyJZP9KV6lTrzAvEEFmvrbrFGgaYiqZUmahgDDvtrnOqc0gfnj84L1phoaYE7xPhfcSaHzaPYPEVtkUhkg==",
+  "dgSpecHash": "VypAniFUEkBS9ou2Cy+xmNOOTJBtmNpXhvUc5hnyjYkcGVHZEAtrikVeWIxjMhCXDDsliGiFDaqW7zUAqMw4CA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\user\\OneDrive\\Documents\\ERP\\Projects\\Table\\Table\\Table.csproj",
+  "projectFilePath": "C:\\Users\\user\\OneDrive\\Documents\\ERP\\Projects\\Stores\\AngularCsh-Stack\\Table\\Table\\Table.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\user\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",

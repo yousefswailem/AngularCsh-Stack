@@ -1,5 +1,6 @@
 using AngularC_.Data;
 using Microsoft.EntityFrameworkCore;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -25,8 +26,12 @@ builder.Services.AddCors(options =>
   });
 });
 
-builder.Services.AddControllers();
-
+//builder.Services.AddControllers();
+builder.Services.AddControllers().AddJsonOptions(options =>
+{
+  options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
+  options.JsonSerializerOptions.WriteIndented = true; // For indented JSON output
+});
 var app = builder.Build();
 
 // Middleware and routing
@@ -38,12 +43,12 @@ if (app.Environment.IsDevelopment())
 app.UseRouting();
 app.UseCors("AllowAngularApp"); // Enable CORS
 
+app.UseAuthorization();
+
 app.UseEndpoints(endpoints =>
 {
   endpoints.MapControllers();
 });
-
-app.UseAuthorization();
 
 app.MapControllers();
 

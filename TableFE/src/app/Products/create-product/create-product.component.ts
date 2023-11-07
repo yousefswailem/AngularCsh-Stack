@@ -31,7 +31,7 @@ export class CreateProductComponent implements OnInit {
       name: ['', [Validators.required, Validators.minLength(3)]],
       price: [null, [Validators.required, Validators.min(0)]],
       storeId: [null, [Validators.required]],
-      colorIds: [[], [Validators.required]] 
+      colorId: [[], [Validators.required]] 
         });
     this.colorService.getColors().subscribe((colors) => {
       this.colors = colors;

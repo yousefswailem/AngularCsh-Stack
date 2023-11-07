@@ -149,7 +149,7 @@
                             <td>{{ product.name }}</td>
                             <td>{{ product.storeName }}</td>
                             <td>{{ product.price }}</td>
-                            <td>{{ product.colorName }}</td>
+                            <td>{{ product.colorIds }}</td>
                             <td>
                                 <button (click)="deleteproduct(product.id)" class="btn btn-danger">Delete</button>
                                 <button [routerLink]="['/products/edit/', product.id]"

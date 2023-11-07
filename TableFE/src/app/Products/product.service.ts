@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Product } from './product.model';
+import { ColorProduct } from './color-product.model';
+import { Color } from '../Color/color.model';
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +16,10 @@ export class ProductService {
   // Get a list of products
   getProducts(): Observable<Product[]> {
     return this.http.get<Product[]>(this.apiUrl);
+  }
+  
+  getColorProducts(): Observable<ColorProduct[]> {
+    return this.http.get<ColorProduct[]>(`${this.apiUrl}/colorproduct`);
   }
 
   // Get a single product by ID
@@ -28,5 +34,11 @@ export class ProductService {
   // Delete a product by ID
   deleteProduct(id: number): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
+  }
+
+
+  getProductColors(productId: number): Observable<Color[]> {
+    // Replace with the actual HTTP request to your backend
+    return this.http.get<Color[]>(`/api/products/${productId}/colors`);
   }
 }

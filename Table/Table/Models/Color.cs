@@ -7,9 +7,8 @@ namespace Table.Models
     {
         public Color()
         {
-          //OrderDetails = new HashSet<OrderDetail>();
-          Product = new HashSet<Product>();
-          ProductColors = new HashSet<ProductColor>();
+      //OrderDetails = new HashSet<OrderDetail>();
+        ColorProducts = new HashSet<ColorProduct>();
 
         }
         [Key]
@@ -20,9 +19,8 @@ namespace Table.Models
         public byte Green { get; set; } // Green component (0-255)
         public byte Blue { get; set; } // Blue component (0-255)
 
-        public virtual ICollection<Product> Product { get; set; }
 
-    public virtual ICollection<ProductColor> ProductColors { get; set; }
+    public virtual ICollection<ColorProduct> ColorProducts { get; set; }
 
     //public virtual ICollection<OrderDetail> OrderDetails { get; set; }
   }
