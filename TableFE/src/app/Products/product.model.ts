@@ -1,4 +1,3 @@
-import { Color } from "../Color/color.model";
 import { Store } from "../stores/store.model";
 import { ColorProduct } from "./color-product.model";
 

@@ -4,9 +4,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Create</title>
 </head>
-<body>
-        <h2>Create a New Store</h2>
-        <form (ngSubmit)="onSubmit()" [formGroup]="storeCreate">
+<body class="card">
+  <h2>Create a New Store</h2>
+        <form class="card-body"  (ngSubmit)="onSubmit()" [formGroup]="storeCreate">
           <div class="form-group">
             <label for="name">Name:</label>
             <input type="text" id="name" name="name" class="form-control" formControlName="name" required>

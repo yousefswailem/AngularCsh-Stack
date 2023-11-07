@@ -17,6 +17,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { CustomersComponent } from './Customer/customers/customers.component';
 import { CustomerCreateComponent } from './Customer/customers-create/customers-create.component';
 import { CustomerEditComponent } from './Customer/customers-edit/customers-edit.component';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 
 @NgModule({
@@ -41,7 +42,8 @@ import { CustomerEditComponent } from './Customer/customers-edit/customers-edit.
     ReactiveFormsModule,
     HttpClientModule,
     FormsModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    NgSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent]

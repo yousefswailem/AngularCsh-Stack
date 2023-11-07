@@ -4,8 +4,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
-<body>
-<form [formGroup]="createProductForm" (ngSubmit)="createProduct()">
+<body class="card">
+    <form class="card-body"  [formGroup]="createProductForm" (ngSubmit)="createProduct()">
     <div class="form-group">
         <label for="name">Name:</label>
         <input type="text" id="name" formControlName="name" class="form-control" required>

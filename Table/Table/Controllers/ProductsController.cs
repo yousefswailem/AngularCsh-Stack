@@ -103,7 +103,36 @@ namespace Table.Controllers
       return Ok(new { message = $"Product {(productDto.Id == 0 ? "created" : "updated")} successfully" });
     }
 
-    public class ProductDto
+    [HttpGet("{id}")]
+    public async Task<IActionResult> GetProduct(int id)
+    {
+      var product = await _context.Products.FindAsync(id);
+      if (product == null)
+      {
+        return NotFound(new { message = "Product not found" });
+      }
+      return Ok(product);
+    }
+
+
+    // DELETE: api/Products/5
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> DeleteProduct(int id)
+    {
+      var Product = await _context.Products.FindAsync(id);
+      if (Product == null)
+      {
+        return NotFound(new { message = "Product not found" });
+      }
+
+      _context.Products.Remove(Product);
+      await _context.SaveChangesAsync();
+
+      return Ok(new { message = "Color deleted successfully" });
+    }
+  
+
+  public class ProductDto
     {
       public int Id { get; set; }
       public string? Name { get; set; }

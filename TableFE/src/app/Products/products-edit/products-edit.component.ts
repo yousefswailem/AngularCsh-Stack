@@ -7,6 +7,7 @@ import { Color } from 'src/app/Color/color.model';
 import { ColorService } from 'src/app/Color/color.service';
 import { Store } from 'src/app/stores/store.model';
 import { StoreService } from 'src/app/stores/store.service';
+import { NgSelectConfig } from '@ng-select/ng-select';
 
 @Component({
   selector: 'app-product-edit',
@@ -25,7 +26,8 @@ export class ProductEditComponent implements OnInit {
     private colorService: ColorService,
     private storeService: StoreService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private config: NgSelectConfig
 
   ) {
     this.editForm = this.formBuilder.group({
@@ -34,6 +36,11 @@ export class ProductEditComponent implements OnInit {
       colorId: [[], [Validators.required]], // Changed to an array to support multiple color IDs
       storeId: [null, [Validators.required]],
     });
+
+
+    this.config.notFoundText = 'Custom not found';
+      this.config.appendTo = 'body';
+      this.config.bindValue = 'value';
   }
 
   ngOnInit() {

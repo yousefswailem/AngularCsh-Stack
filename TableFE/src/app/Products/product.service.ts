@@ -18,10 +18,6 @@ export class ProductService {
     return this.http.get<Product[]>(this.apiUrl);
   }
   
-  getColorProducts(): Observable<ColorProduct[]> {
-    return this.http.get<ColorProduct[]>(`${this.apiUrl}/colorproduct`);
-  }
-
   // Get a single product by ID
   getProduct(id: number): Observable<Product> {
     return this.http.get<Product>(`${this.apiUrl}/${id}`);
@@ -36,9 +32,4 @@ export class ProductService {
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
 
-
-  getProductColors(productId: number): Observable<Color[]> {
-    // Replace with the actual HTTP request to your backend
-    return this.http.get<Color[]>(`/api/products/${productId}/colors`);
-  }
 }

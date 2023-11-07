@@ -2,11 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Product } from '../product.model';
 import { ProductService } from '../product.service';
-import { ColorService } from 'src/app/Color/color.service';
-import { Color } from 'src/app/Color/color.model';
 import { StoreService } from 'src/app/stores/store.service';
 import { Store } from 'src/app/stores/store.model';
-import { forkJoin } from 'rxjs';
 import { ColorProduct } from '../color-product.model';
 
 @Component({
@@ -16,38 +13,42 @@ import { ColorProduct } from '../color-product.model';
 })
 export class ProductsComponent implements OnInit {
   products: Product[] = [];
-  colors: Color[] = [];
-  stores: Store[] = [];
   colorProducts: ColorProduct[] = [];
+  stores: Store[] = [];
   p: number = 1; // Used for pagination, presumably
 
   constructor(
     private productService: ProductService,
     private storeService: StoreService,
     private router: Router
-  ) {}
+  ) { }
 
-    ngOnInit() {
-      this.loadStores();
-      this.loadProducts();
-      console.log(this.colorProducts);
-
-    }
+  ngOnInit() {
+    this.loadStores();
+    this.loadProducts();
+  }
 
   loadStores() {
     this.storeService.getStores().subscribe(stores => {
       this.stores = stores;
     });
   }
-
-
+  
 
   loadProducts() {
     this.productService.getProducts().subscribe(products => {
       this.products = products.map(product => {
         const storeName = this.getStoreName(product.storeId);
-        const colorIds = this.getColorId(product.id);
-        return { ...product, storeName,colorIds }; 
+        console.log(products);
+
+        return {
+          ...product,
+          storeName
+        };
+      });
+
+      this.products.forEach(product => {
+        product.colorProducts = product.colorProducts.map(a => a.color.name);
       });
     });
   }
@@ -56,12 +57,7 @@ export class ProductsComponent implements OnInit {
     const store = this.stores.find(s => s.id === storeId);
     return store ? store.name : 'Unknown';
   }
-  getColorId(productId: number): number[] {
-    // In a real application, replace this with actual logic to get color IDs
-    return this.colorProducts
-      .filter(cp => cp.ProductId === productId)
-      .map(cp => cp.ColorId);
-  }
+
 
   refreshPage() {
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;

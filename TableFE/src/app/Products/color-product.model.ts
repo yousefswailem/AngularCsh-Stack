@@ -1,6 +1,7 @@
 
 export interface ColorProduct {
-    id: number;
-    ColorId: number;
-    ProductId: number;
-  }
+  id: number;
+  ColorId: number;
+  ProductId: number;
+  color: any;
+}

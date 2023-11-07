@@ -6,11 +6,11 @@
     <title>Document</title>
 </head>
 
-<body>
-   <!-- color-edit.component.html -->
+<body class="card">
+  <!-- color-edit.component.html -->
 <div *ngIf="editedColor">
     <h2>Edit Color</h2>
-    <form [formGroup]="editForm" (ngSubmit)="upsertColor()">
+    <form class="card-body" [formGroup]="editForm" (ngSubmit)="upsertColor()">
       <div class="form-group">
         <label for="name">Name:</label>
         <input type="text" id="name" formControlName="name" class="form-control" required>
