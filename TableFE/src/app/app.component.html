@@ -17,21 +17,21 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
         <li class="nav-item active">
-          <a class="nav-link" href="/stores">Stores <span class="sr-only">(current)</span></a>
+          <a class="nav-link" [routerLink]="['/stores']">Stores <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/products">Products</a>
+          <a class="nav-link" [routerLink]="['/products']">Products</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/colors">Colors</a>
+          <a class="nav-link" [routerLink]="['/colors']">Colors</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/customers">Customers</a>
+          <a class="nav-link" [routerLink]="['/customers']">Customers</a>
         </li>
-       
       </ul>
     </div>
   </nav>
+  
   <router-outlet></router-outlet>
 
 </body>

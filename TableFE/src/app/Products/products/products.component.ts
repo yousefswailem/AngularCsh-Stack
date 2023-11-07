@@ -46,7 +46,6 @@ export class ProductsComponent implements OnInit {
           storeName
         };
       });
-
       this.products.forEach(product => {
         product.colorProducts = product.colorProducts.map(a => a.color.name);
       });
