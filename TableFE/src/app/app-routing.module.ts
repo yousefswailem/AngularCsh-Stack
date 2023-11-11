@@ -12,6 +12,7 @@ import { ColorEditComponent } from './Color/colors-edit/colors-edit.component';
 import { CustomersComponent } from './Customer/customers/customers.component';
 import { CustomerCreateComponent } from './Customer/customers-create/customers-create.component';
 import { CustomerEditComponent } from './Customer/customers-edit/customers-edit.component';
+import { UsersComponent } from './users/users.component';
 
 const routes: Routes = [
   {
@@ -57,6 +58,10 @@ const routes: Routes = [
   {
     path: 'customers/edit/:id', // Adjust the route as needed
     component: CustomerEditComponent
+  },
+  {
+    path: 'users',
+    component: UsersComponent
   },
 ];
 

@@ -21,6 +21,8 @@ namespace AngularC_.Data
     public virtual DbSet<Color> Colors { get; set; } = null!;
     public virtual DbSet<Store> Stores { get; set; } = null!;
     public virtual DbSet<ColorProduct> ColorProduct { get; set; } = null!;
+    public virtual DbSet<User> Users { get; set; } = null!;
+
 
 
 

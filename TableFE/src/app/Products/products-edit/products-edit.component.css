@@ -1,5 +1,73 @@
 @import "~@ng-select/ng-select/themes/default.theme.css";
 
+ng-select.ng-invalid.ng-touched .ng-select-container {
+  border-color: #dc3545;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 0 3px #fde6e8;
+}
+ng-select[ng-select] .ng-option {
+  display: flex;
+  align-items: center;
+  padding: 8px;
+  cursor: pointer;
+}
+/* Add this to your existing CSS */
+ng-select[ng-select] .ng-dropdown-panel {
+  background-color: #ffffff; /* This will set the dropdown background to white */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: Adds a subtle shadow to the dropdown panel */
+  
+}
+
+
+ng-select[ng-select] .ng-option:hover {
+  background-color: #f2f2f2;
+}
+
+/* Checked state style */
+ng-select[ng-select] .ng-option.selected {
+  background-color: #e9ecef;
+}
+
+/* Focus state for accessibility */
+input .ng-option:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+}
+ng-select[ng-select] .ng-option .ng-option-template {
+  background-color: #f8f9fa; /* Set your desired background color for the dropdown items */
+  padding: 10px; /* Add padding to each option for better spacing */
+  border-bottom: 1px solid #e8e8e8; /* Adds a separator between items */
+  
+}
+/* Hide the default checkbox style */
+input[type="checkbox"] {
+  appearance: none;
+  border: 1px solid #ced4da;
+  background-color: white;
+  padding: 9px;
+  border-radius: 4px;
+  display: inline-block;
+  position: relative;
+  
+}
+
+/* Creating a custom checkbox with a checkmark */
+input[type="checkbox"]:checked {
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+input[type="checkbox"]:checked::after {
+  content: '';
+  position: absolute;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+/* Style for the label text */
+.ng-option label {
+  margin-bottom: 0; /* Remove default margin */
+}
 /* Additional global styles for body or specific card class */
 body.card {
     background-color: #f8f9fa; /* A light grey background */
@@ -25,8 +93,9 @@ body.card {
     width: 100%;
   }
   
+  
   .form-group {
-    margin-bottom: 15px; /* Space out form groups */
+    margin-bottom: 30px; /* Space out form groups */
   }
   
   /* Improve the select and input fields */

@@ -18,6 +18,7 @@ import { CustomersComponent } from './Customer/customers/customers.component';
 import { CustomerCreateComponent } from './Customer/customers-create/customers-create.component';
 import { CustomerEditComponent } from './Customer/customers-edit/customers-edit.component';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { UsersComponent } from './users/users.component';
 
 
 @NgModule({
@@ -34,7 +35,8 @@ import { NgSelectModule } from '@ng-select/ng-select';
     ColorEditComponent,
     CustomersComponent,
     CustomerCreateComponent,
-    CustomerEditComponent
+    CustomerEditComponent,
+    UsersComponent
   ],
   imports: [
     BrowserModule,

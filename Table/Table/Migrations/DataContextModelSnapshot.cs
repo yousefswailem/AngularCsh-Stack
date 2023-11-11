@@ -195,6 +195,28 @@ namespace Table.Migrations
                     b.ToTable("Stores");
                 });
 
+            modelBuilder.Entity("Table.Models.User", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Password")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Username")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Users");
+                });
+
             modelBuilder.Entity("Table.Models.ColorProduct", b =>
                 {
                     b.HasOne("Table.Models.Color", "Color")
@@ -234,7 +256,7 @@ namespace Table.Migrations
                         .IsRequired();
 
                     b.HasOne("Table.Models.Product", "Product")
-                        .WithMany("OrderDetails")
+                        .WithMany()
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -273,8 +295,6 @@ namespace Table.Migrations
             modelBuilder.Entity("Table.Models.Product", b =>
                 {
                     b.Navigation("ColorProducts");
-
-                    b.Navigation("OrderDetails");
                 });
 
             modelBuilder.Entity("Table.Models.Store", b =>

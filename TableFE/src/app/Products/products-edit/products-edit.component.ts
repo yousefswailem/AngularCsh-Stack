@@ -37,8 +37,7 @@ export class ProductEditComponent implements OnInit {
       storeId: [null, [Validators.required]],
     });
 
-
-    this.config.notFoundText = 'Custom not found';
+      this.config.notFoundText = 'Custom not found';
       this.config.appendTo = 'body';
       this.config.bindValue = 'value';
   }
