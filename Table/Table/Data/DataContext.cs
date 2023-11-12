@@ -7,7 +7,6 @@ namespace AngularC_.Data
     {
         public DataContext()
         {
-
         }
         public DataContext(DbContextOptions<DataContext> options)
             : base(options)

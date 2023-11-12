@@ -1,40 +1,57 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
 </head>
 
 <body class="card">
   <!-- color-edit.component.html -->
-<div *ngIf="editedColor">
+  <div *ngIf="editedColor">
     <h2>Edit Color</h2>
     <form class="card-body" [formGroup]="editForm" (ngSubmit)="upsertColor()">
       <div class="form-group">
         <label for="name">Name:</label>
         <input type="text" id="name" formControlName="name" class="form-control" required>
+        <div style="color: red;" *ngIf="editForm.get('name')?.touched && editForm.get('name')?.invalid"
+          class="error-message">
+          Name is required.
+        </div>
       </div>
       <div class="form-group">
         <label for="hexCode">Hex Code:</label>
         <input type="text" id="hexCode" formControlName="hexCode" class="form-control" required>
+        <div style="color: red;" *ngIf="editForm.get('hexCode')?.touched && editForm.get('hexCode')?.invalid"
+          class="error-message">
+          Hex Code is required.
+        </div>
       </div>
       <div class="form-group">
-        <label for="red">Red:</label>
-        <input type="number" id="red" formControlName="red" class="form-control" required>
+        <label for="red">Red (0-255):</label>
+        <input type="number" id="red" formControlName="red" class="form-control">
+        <div *ngIf="editForm.get('red')?.touched && editForm.get('red')?.invalid" class="error-message">
+          <div style="color: red;" *ngIf="editForm.get('red')?.errors || editForm.get('red')?.errors">Red value must be
+            between 0 and 255.</div>
+        </div>
       </div>
       <div class="form-group">
         <label for="green">Green:</label>
         <input type="number" id="green" formControlName="green" class="form-control" required>
+        <div style="color: green;" *ngIf="editForm.get('green')?.errors || editForm.get('green')?.errors">Green value
+          must be between 0 and 255.</div>
+
       </div>
       <div class="form-group">
         <label for="blue">Blue:</label>
         <input type="number" id="blue" formControlName="blue" class="form-control" required>
+        <div style="color: blue;" *ngIf="editForm.get('blue')?.errors || editForm.get('blue')?.errors">Blue value must
+          be between 0 and 255.</div>
       </div>
       <button type="submit" class="btn btn-primary">Save</button>
     </form>
   </div>
-  
+
 </body>
 
 </html>
