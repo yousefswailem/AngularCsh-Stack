@@ -16,12 +16,28 @@ export class ProductsComponent implements OnInit {
   colorProducts: ColorProduct[] = [];
   stores: Store[] = [];
   p: number = 1; // Used for pagination, presumably
+  searchTerm: string = ''; 
 
   constructor(
     private productService: ProductService,
     private storeService: StoreService,
     private router: Router
   ) { }
+
+
+  filterProducts() {
+        if (!this.searchTerm) {
+          return this.products;
+        }
+        return this.products.filter(product =>
+          product.name.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
+          product.storeName?.toLowerCase().includes(this.searchTerm.toLowerCase()) 
+        );
+      }
+
+      onSearchChange(searchTerm: string): void {
+            this.searchTerm = searchTerm;
+          }
 
   ngOnInit() {
     this.loadStores();

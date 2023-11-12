@@ -19,6 +19,7 @@ import { CustomerCreateComponent } from './Customer/customers-create/customers-c
 import { CustomerEditComponent } from './Customer/customers-edit/customers-edit.component';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { UsersComponent } from './users/users.component';
+import { SearchBarComponent } from './searchbar/searchbar.component';
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import { UsersComponent } from './users/users.component';
     CustomersComponent,
     CustomerCreateComponent,
     CustomerEditComponent,
-    UsersComponent
+    UsersComponent,
+    SearchBarComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,23 @@
+.search-container {
+  background-color: #b6b8c2;
+}
+
+.search-input {
+  width: 200px;
+  padding: 5px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-right: 10px;
+  background-color: rgb(172, 168, 168);
+}
+
+.search-button {
+  padding: 6px 10px;
+  background-color: #3498db;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+}

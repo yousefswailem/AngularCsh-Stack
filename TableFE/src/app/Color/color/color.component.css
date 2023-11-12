@@ -1,67 +1,74 @@
-@import "~@ng-select/ng-select/themes/default.theme.css";
+body {
+  color: #404E67;
+  background: #242948;
+  font-family: 'Open Sans', sans-serif;
+  height: 94vh;
+}
 
-/* Additional global styles for body or specific card class */
-body.card {
-    background-color: #f8f9fa; /* A light grey background */
-    padding: 30px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh; /* Align form vertically */
-  }
-  
-  h2 {
-    color: #333;
-    margin-bottom: 20px;
-  }
-  
-  /* Form layout */
-  .card-body {
-    background: #fff;
-    padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    max-width: 500px; /* Set a max-width for the form */
-    width: 100%;
-  }
-  
-  .form-group {
-    margin-bottom: 15px; /* Space out form groups */
-  }
-  
-  /* Improve the select and input fields */
-  input.form-control, select.form-control, ng-select.form-control {
-    height: 45px; /* Increase the height */
-    border-radius: 4px; /* Round corners */
-    border: 1px solid #ced4da; /* Bootstrap's default border color */
-    padding: 5px 15px; /* Add more padding inside */
-  }
-  
-  /* Style the button */
-  button.btn-primary {
-    width: 100%; /* Full width button */
-    padding: 10px; /* Add padding */
-    font-size: 16px; /* Increase font size */
-    border-radius: 4px; /* Round corners */
-    margin-top: 20px; /* Space above the button */
-  }
-  
-  /* Hover and focus states for inputs and button */
-  input.form-control:focus, select.form-control:focus, ng-select.form-control:focus, button.btn-primary:hover {
-    border-color: #80bdff; /* Highlight color for inputs */
-    outline: 0; /* Remove default focus outline */
-    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25); /* Bootstrap's focus shadow */
-  }
-  
-  /* Button interaction */
-  button.btn-primary {
-    background-color: #007bff; /* Primary color */
-    border-color: #007bff;
-    transition: all 0.3s ease-in-out;
-  }
-  
-  button.btn-primary:hover {
-    background-color: #0056b3; /* Darken on hover */
-    border-color: #0056b3;
-  }
-  
+.table-wrapper {
+  width: 1000px;
+  margin: 30px auto;
+  background: #ffffffaa;
+  padding: 20px;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+  border-radius: 12px;
+}
+
+.table-title {
+  padding-bottom: 10px;
+  margin: 0 0 10px;
+}
+
+.table-title h2 {
+  margin: 6px 0 0;
+  font-size: 22px;
+}
+
+.table-title .add-new {
+  float: right;
+  height: 30px;
+  font-weight: bold;
+  font-size: 12px;
+  text-shadow: none;
+  min-width: 100px;
+  border-radius: 50px;
+  line-height: 13px;
+  color: white;
+}
+
+.table-title .add-new i {
+  margin-right: 4px;
+}
+
+table.table {
+  table-layout: fixed;
+}
+
+table.table tr th,
+table.table tr td {
+  border-color: black;
+}
+
+table.table tr:nth-child(odd) td {
+  background-color: #96A4D3;
+}
+
+table.table th {
+  cursor: pointer;
+  background-color: #a98f76;
+}
+
+table.table td a {
+  cursor: pointer;
+  display: inline-block;
+  margin: 0 5px;
+  min-width: 24px;
+}
+
+/* CSS for wrapping content within table cells */
+table.table td {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  max-width: 200px;
+  vertical-align: top;
+}

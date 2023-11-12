@@ -34,4 +34,32 @@ export class CustomersComponent implements OnInit {
       });
     }
   }
-}
+
+
+
+  sortColumn: keyof Customer | null = null;
+  sortOrder: 'asc' | 'desc' = 'asc';
+
+  groupByColumn(colName: keyof Customer) {
+    if (this.sortColumn === colName) {
+      this.sortOrder = this.sortOrder === 'asc' ? 'desc' : 'asc';
+    } else {
+      this.sortOrder = 'asc';
+    }
+    this.sortColumn = colName;
+
+    this.customers.sort((a, b) => {
+      // If the property is undefined, default it to an empty string for comparison
+      const aValue = a[colName] || '';
+      const bValue = b[colName] || '';
+
+      // Now we can safely compare the values
+      if (aValue < bValue) return this.sortOrder === 'asc' ? -1 : 1;
+      if (aValue > bValue) return this.sortOrder === 'asc' ? 1 : -1;
+      return 0;
+    });
+  }
+
+
+  }    
+

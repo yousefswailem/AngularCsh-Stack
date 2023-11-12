@@ -2,8 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Product } from './product.model';
-import { ColorProduct } from './color-product.model';
-import { Color } from '../Color/color.model';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -31,5 +30,17 @@ export class ProductService {
   deleteProduct(id: number): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
+
+  searchProducts(query: string): Observable<Product[]> {
+    return this.getProducts().pipe(
+      map(products => 
+        products.filter(product => 
+          product.name.toLowerCase().includes(query.toLowerCase())
+        )
+      )
+    );
+  }
+
+  
 
 }
