@@ -1,9 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<body style="min-height: 94vh;" >
+<body style="min-height: 94vh;">
     <app-sidebar></app-sidebar>
-    <div class="container-lg">
+    <div class="container-lg" *ngIf="showCreateProduct">
+        <app-create-product  [@flipState]="flip"></app-create-product>
+        <button class="btn btn-primary" (click)="backToProductList()">Back to list</button>
+    </div>
+    <div *ngIf="!showCreateProduct" [@fade] [@flipState]="flip" class="container-lg">
         <div class="table-responsive">
             <div class="table-wrapper">
                 <div class="table-title">
@@ -12,8 +16,9 @@
                             <h2>Products <b>Details</b></h2>
                         </div>
                         <div class="col-sm-4">
-                            <a href="/products/create" class="btn btn-info add-new"><i class="fa fa-plus"></i> Add
-                                New</a>
+                            <a (click)="goToCreateProduct()" class="btn btn-info add-new">
+                                <i class="fa fa-plus"></i> Add New
+                            </a>
                         </div>
                         <app-searchbar (searchPerformed)="onSearchChange($event)" style="margin: 16px;"></app-searchbar>
                     </div>
@@ -21,20 +26,34 @@
                 <table class="table table-bordered">
                     <thead>
                         <tr>
-                            <th>Name</th>
-                            <th>Store</th>
-                            <th>Price</th>
+                            <th (click)="groupByColumn('name')">Name
+                                <span *ngIf="sortColumn === 'name'">
+                                    <i [ngClass]="sortOrder === 'asc' ? 'fa fa-arrow-up' : 'fa fa-arrow-down'"></i>
+                                </span>
+                            </th>
+
+                            <th (click)="groupByColumn('storeName')">Store
+                                <span *ngIf="sortColumn === 'storeName'">
+                                    <i [ngClass]="sortOrder === 'asc' ? 'fa fa-arrow-up' : 'fa fa-arrow-down'"></i>
+                                </span>
+                            </th>
+
+                            <th (click)="groupByColumn('price')">Price
+                                <span *ngIf="sortColumn === 'price'">
+                                    <i [ngClass]="sortOrder === 'asc' ? 'fa fa-arrow-up' : 'fa fa-arrow-down'"></i>
+                                </span>
+                            </th>
                             <th>Color</th>
                             <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr  *ngFor="let product of filterProducts() | paginate: { itemsPerPage: 5, currentPage: p }">
+                        <tr *ngFor="let product of filterProducts() | paginate: { itemsPerPage: 5, currentPage: p }">
                             <td>{{ product.name }}</td>
                             <td>{{ product.storeName }}</td>
                             <td>{{ product.price }}</td>
                             <td>{{ product.colorProducts }}</td>
-                            <td >
+                            <td>
                                 <button (click)="deleteproduct(product.id)" style="margin-right: 5px;"
                                     class="btn btn-danger">Delete</button>
                                 <button [routerLink]="['/products/edit/', product.id]"
@@ -44,11 +63,10 @@
                     </tbody>
                 </table>
                 <pagination-controls (pageChange)="p = $event"></pagination-controls>
-
-
             </div>
         </div>
     </div>
 </body>
+
 
 </html>

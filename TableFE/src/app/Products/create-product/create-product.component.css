@@ -8,6 +8,7 @@ body.card {
     justify-content: center;
     align-items: center;
     min-height: 100vh; /* Align form vertically */
+    
   }
   
   h2 {
@@ -21,7 +22,7 @@ body.card {
     padding: 20px;
     border-radius: 5px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    max-width: 500px; /* Set a max-width for the form */
+    /* max-width: 500px;  */
     width: 100%;
   }
   
@@ -34,7 +35,7 @@ body.card {
     height: 45px; /* Increase the height */
     border-radius: 4px; /* Round corners */
     border: 1px solid #ced4da; /* Bootstrap's default border color */
-    padding: 5px 15px; /* Add more padding inside */
+    padding: 5px 15px; 
   }
   
   /* Style the button */

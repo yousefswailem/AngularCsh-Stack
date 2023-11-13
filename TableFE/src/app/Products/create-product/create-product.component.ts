@@ -41,6 +41,11 @@ export class CreateProductComponent implements OnInit {
     });
   }
 
+  refreshPage() {
+    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+    this.router.onSameUrlNavigation = 'reload';
+    this.router.navigate(['/products']);
+  }
   
   createProduct() {
     if (!this.createProductForm.valid) {
@@ -49,11 +54,11 @@ export class CreateProductComponent implements OnInit {
     }
 
     const newProduct: Product = this.createProductForm.value;
-
+    this.router.navigate(['/products']);
     this.productService.upsertProduct(newProduct).subscribe({
       next: (response: any) => {
         console.log('Product created successfully', response);
-        this.router.navigate(['/products']);
+        this.refreshPage();
       },
       error: (error: any) => {
         console.error('Error creating the product:', error);
