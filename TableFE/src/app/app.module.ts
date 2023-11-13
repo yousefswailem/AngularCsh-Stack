@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule,CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -20,6 +20,9 @@ import { CustomerEditComponent } from './Customer/customers-edit/customers-edit.
 import { NgSelectModule } from '@ng-select/ng-select';
 import { UsersComponent } from './users/users.component';
 import { SearchBarComponent } from './searchbar/searchbar.component';
+import { SidebarComponent } from './sidebar/sidebar.component';
+import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
+import { NavbarComponent } from './navbar/navbar.component';
 
 
 @NgModule({
@@ -38,7 +41,9 @@ import { SearchBarComponent } from './searchbar/searchbar.component';
     CustomerCreateComponent,
     CustomerEditComponent,
     UsersComponent,
-    SearchBarComponent
+    SearchBarComponent,
+    SidebarComponent,
+    NavbarComponent,
   ],
   imports: [
     BrowserModule,
@@ -47,9 +52,11 @@ import { SearchBarComponent } from './searchbar/searchbar.component';
     HttpClientModule,
     FormsModule,
     NgxPaginationModule,
-    NgSelectModule
+    NgSelectModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+
 })
 export class AppModule { }

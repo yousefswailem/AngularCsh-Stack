@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<body>
+<body style="min-height: 94vh;" >
+    <app-sidebar></app-sidebar>
     <div class="container-lg">
         <div class="table-responsive">
             <div class="table-wrapper">
@@ -28,12 +29,12 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let product of filterProducts() | paginate: { itemsPerPage: 5, currentPage: p }">
+                        <tr  *ngFor="let product of filterProducts() | paginate: { itemsPerPage: 5, currentPage: p }">
                             <td>{{ product.name }}</td>
                             <td>{{ product.storeName }}</td>
                             <td>{{ product.price }}</td>
                             <td>{{ product.colorProducts }}</td>
-                            <td>
+                            <td >
                                 <button (click)="deleteproduct(product.id)" style="margin-right: 5px;"
                                     class="btn btn-danger">Delete</button>
                                 <button [routerLink]="['/products/edit/', product.id]"
