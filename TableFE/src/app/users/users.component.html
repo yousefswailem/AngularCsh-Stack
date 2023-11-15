@@ -1,12 +1,5 @@
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-
 <body>
+    
     <div class="register-container">
         <h2>Register</h2>
         <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
@@ -14,33 +7,36 @@
                 <label for="username">Username</label>
                 <input type="text" formControlName="username">
                 <div *ngIf="registerForm.get('username')?.touched && registerForm.get('username')?.invalid"
-                    class="error-message">
-                    Username is required.
-                </div>
+                class="error-message">
+                Username is required.
             </div>
-            <div class="input-group">
-                <label for="name">Name</label>
-                <input type="text" formControlName="name">
-                <div *ngIf="registerForm.get('name')?.touched && registerForm.get('name')?.invalid"
-                    class="error-message">
-                    Name is required.
-                </div>
+        </div>
+        
+        <div class="input-group">
+            <label for="name">Name</label>
+            <input type="text" formControlName="name">
+            <div *ngIf="registerForm.get('name')?.touched && registerForm.get('name')?.invalid" class="error-message">
+                Name is required.
             </div>
-            <div class="input-group">
-                <label for="password">Password</label>
-                <input type="password" formControlName="password">
-                <div *ngIf="registerForm.get('password')?.touched && registerForm.get('password')?.invalid"
-                    class="error-message">
-                    Password is required.
-                </div>
-            </div>
-            <div class="input-group">
-                <button type="submit" [disabled]="!registerForm.valid">Register</button>
-            </div>
-        </form>
+        </div>
+        
+        <div class="input-group">
+            <label for="password">Password</label>
+            <input type="password" formControlName="password">
+            <div *ngIf="registerForm.get('password')?.touched && registerForm.get('password')?.invalid"
+            class="error-message">
+            Password is required.
+        </div>
     </div>
-
-
+    
+    <div class="input-group">
+        <button type="submit" [disabled]="!registerForm.valid">Register</button>
+    </div>
+    
+    <div *ngIf="submitAttempted && registerForm.invalid" class="error-message">
+        Fill the form correctly.
+    </div>
+    
+    </form>
+</div>
 </body>
-
-</html>

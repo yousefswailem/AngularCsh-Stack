@@ -3,6 +3,7 @@ export interface User {
     username: string;
     name: string;
     password: string;
+    Token:any;
     // Add other user properties here as needed
   }
   

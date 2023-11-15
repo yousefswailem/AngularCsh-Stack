@@ -1,0 +1,41 @@
+body {
+    padding-top: 60px; /* This should be higher than the height of the navbar */
+}
+
+/* CSS for the form */
+form {
+    max-width: 600px; /* Maximum width of the form */
+    margin: 20px auto; /* Center the form in the page */
+    padding: 20px;
+    background: #f8f8f8; /* Light grey background */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* A subtle shadow for depth */
+}
+
+/* CSS for the form inputs */
+input[type="text"],
+input[type="password"],
+input[type="number"] {
+    width: 100%; /* Make the inputs take up the full container width */
+    padding: 10px; /* Add some padding inside the inputs */
+    margin-bottom: 15px; /* Add some space below each input */
+    border: 1px solid #ddd; /* A subtle border */
+    border-radius: 4px; /* Slightly rounded borders for the inputs */
+}
+
+/* CSS for the submit button */
+input[type="submit"],
+button {
+    width: 100%; /* Full width */
+    padding: 10px; /* Padding for clickability */
+    border: none; /* Remove the default border */
+    background-color: #5c85d6; /* A nice blue */
+    color: white;
+    cursor: pointer; /* The hand cursor on hover */
+    border-radius: 4px; /* Rounded corners */
+}
+
+input[type="submit"]:hover,
+button:hover {
+    background-color: #3d5ba9; /* A darker blue on hover */
+}

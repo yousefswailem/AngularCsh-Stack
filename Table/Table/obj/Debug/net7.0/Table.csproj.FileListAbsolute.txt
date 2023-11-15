@@ -150,3 +150,4 @@ C:\Users\user\OneDrive\Documents\ERP\Projects\Stores\AngularCsh-Stack\Table\Tabl
 C:\Users\user\OneDrive\Documents\ERP\Projects\Stores\AngularCsh-Stack\Table\Table\obj\Debug\net7.0\Table.pdb
 C:\Users\user\OneDrive\Documents\ERP\Projects\Stores\AngularCsh-Stack\Table\Table\obj\Debug\net7.0\Table.genruntimeconfig.cache
 C:\Users\user\OneDrive\Documents\ERP\Projects\Stores\AngularCsh-Stack\Table\Table\obj\Debug\net7.0\ref\Table.dll
+C:\Users\user\OneDrive\Documents\ERP\Projects\Stores\AngularCsh-Stack\Table\Table\bin\Debug\net7.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll

@@ -38,7 +38,7 @@ export class ProductsComponent implements OnInit {
   colorProducts: ColorProduct[] = [];
   stores: Store[] = [];
   p: number = 1; // Used for pagination, presumably
-  searchTerm: string = ''; 
+  searchTerm: string = '';
   flip: string = 'inactive';
 
   constructor(
@@ -49,18 +49,18 @@ export class ProductsComponent implements OnInit {
 
 
   filterProducts() {
-        if (!this.searchTerm) {
-          return this.products;
-        }
-        return this.products.filter(product =>
-          product.name.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
-          product.storeName?.toLowerCase().includes(this.searchTerm.toLowerCase()) 
-        );
-      }
+    if (!this.searchTerm) {
+      return this.products;
+    }
+    return this.products.filter(product =>
+      product.name.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
+      product.storeName?.toLowerCase().includes(this.searchTerm.toLowerCase())
+    );
+  }
 
-      onSearchChange(searchTerm: string): void {
-            this.searchTerm = searchTerm;
-          }
+  onSearchChange(searchTerm: string): void {
+    this.searchTerm = searchTerm;
+  }
 
   ngOnInit() {
     this.loadStores();
@@ -72,7 +72,7 @@ export class ProductsComponent implements OnInit {
       this.stores = stores;
     });
   }
-  
+
 
   loadProducts() {
     this.productService.getProducts().subscribe(products => {
@@ -143,7 +143,7 @@ export class ProductsComponent implements OnInit {
   }
 
 
-  showCreateProduct: boolean = false; 
+  showCreateProduct: boolean = false;
   goToCreateProduct() {
     this.flip = 'active'; // Activate flip animation
     setTimeout(() => {
@@ -151,7 +151,7 @@ export class ProductsComponent implements OnInit {
     }, 500); // Delay for half a second to show animation
   }
 
-  
+
   backToProductList() {
     this.flip = 'inactive'; // Activate flip animation for back transition
     setTimeout(() => {

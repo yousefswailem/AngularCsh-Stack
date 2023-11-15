@@ -1,68 +1,43 @@
-@import "~@ng-select/ng-select/themes/default.theme.css";
+body {
+  border-radius: 12px;
+  max-width: 580px; /* Maximum width of the form */
+  padding-top: 60px; /* This should be higher than the height of the navbar */
+}
 
-/* Additional global styles for body or specific card class */
-body.card {
-    background-color: #f8f9fa; /* A light grey background */
-    padding: 30px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh; /* Align form vertically */
-    
-  }
-  
-  h2 {
-    color: #333;
-    margin-bottom: 20px;
-  }
-  
-  /* Form layout */
-  .card-body {
-    background: #fff;
-    padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    /* max-width: 500px;  */
-    width: 100%;
-  }
-  
-  .form-group {
-    margin-bottom: 15px; /* Space out form groups */
-  }
-  
-  /* Improve the select and input fields */
-  input.form-control, select.form-control, ng-select.form-control {
-    height: 45px; /* Increase the height */
-    border-radius: 4px; /* Round corners */
-    border: 1px solid #ced4da; /* Bootstrap's default border color */
-    padding: 5px 15px; 
-  }
-  
-  /* Style the button */
-  button.btn-primary {
-    width: 100%; /* Full width button */
-    padding: 10px; /* Add padding */
-    font-size: 16px; /* Increase font size */
-    border-radius: 4px; /* Round corners */
-    margin-top: 20px; /* Space above the button */
-  }
-  
-  /* Hover and focus states for inputs and button */
-  input.form-control:focus, select.form-control:focus, ng-select.form-control:focus, button.btn-primary:hover {
-    border-color: #80bdff; /* Highlight color for inputs */
-    outline: 0; /* Remove default focus outline */
-    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25); /* Bootstrap's focus shadow */
-  }
-  
-  /* Button interaction */
-  button.btn-primary {
-    background-color: #007bff; /* Primary color */
-    border-color: #007bff;
-    transition: all 0.3s ease-in-out;
-  }
-  
-  button.btn-primary:hover {
-    background-color: #0056b3; /* Darken on hover */
-    border-color: #0056b3;
-  }
-  
+/* CSS for the form */
+form {
+  max-width: 600px; /* Maximum width of the form */
+  margin: 20px auto; /* Center the form in the page */
+  padding: 20px;
+  background: #f8f8f8; /* Light grey background */
+  border-radius: 8px; /* Rounded corners */
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* A subtle shadow for depth */
+}
+
+/* CSS for the form inputs */
+input[type="text"],
+input[type="password"],
+input[type="number"] {
+  width: 100%; /* Make the inputs take up the full container width */
+  padding: 10px; /* Add some padding inside the inputs */
+  margin-bottom: 15px; /* Add some space below each input */
+  border: 1px solid #ddd; /* A subtle border */
+  border-radius: 4px; /* Slightly rounded borders for the inputs */
+}
+
+/* CSS for the submit button */
+input[type="submit"],
+button {
+  width: 100%; /* Full width */
+  padding: 10px; /* Padding for clickability */
+  border: none; /* Remove the default border */
+  background-color: #5c85d6; /* A nice blue */
+  color: white;
+  cursor: pointer; /* The hand cursor on hover */
+  border-radius: 4px; /* Rounded corners */
+}
+
+input[type="submit"]:hover,
+button:hover {
+  background-color: #3d5ba9; /* A darker blue on hover */
+}

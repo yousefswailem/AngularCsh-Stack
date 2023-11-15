@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { StoreService } from '../store.service';
 import { Store } from '../store.model';
-import { Route, Router } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-stores',
@@ -19,16 +19,11 @@ export class StoresComponent implements OnInit {
       this.stores = stores.sort((a, b) => b.id - a.id);
     });
   }
-  refreshPage() {
-    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
-    this.router.onSameUrlNavigation = 'reload';
-    this.router.navigate(['/stores']);
-  }
+    
   deleteStore(storeId: number) {
     if (confirm('Are you sure you want to delete this store?')) {
       this.storeService.deleteStore(storeId).subscribe(() => {
-        console.log('Store deleted successfully');
-        this.refreshPage();
+        this.router.navigate(['/stores']);
       });
     }
   }

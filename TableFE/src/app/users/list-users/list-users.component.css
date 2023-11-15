@@ -1,0 +1,76 @@
+body {
+    color: #404E67;
+    background: #242948;
+    font-family: 'Open Sans', sans-serif;
+    height: 100vh;
+    display: flex;
+}
+
+.table-wrapper {
+    margin: 150px 0px;
+    background: #ffffffaa;
+    padding: 20px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+    border-radius: 12px;
+}
+
+.table-title {
+    padding-bottom: 10px;
+    margin: 0 0 10px;
+}
+
+.table-title h2 {
+    margin: 6px 0 0;
+    font-size: 22px;
+}
+
+.table-title .add-new {
+    float: right;
+    height: 30px;
+    font-weight: bold;
+    font-size: 12px;
+    text-shadow: none;
+    min-width: 100px;
+    border-radius: 50px;
+    line-height: 13px;
+    color: white;
+}
+
+.table-title .add-new i {
+    margin-right: 4px;
+}
+
+table.table {
+    table-layout: fixed;
+}
+
+table.table tr th,
+table.table tr td {
+    border-color: black;
+}
+
+table.table tr:nth-child(odd) td {
+    background-color: #96A4D3;
+}
+
+
+
+table.table th {
+    cursor: pointer;
+    background-color: #a98f76;
+}
+
+table.table td a {
+    cursor: pointer;
+    display: inline-block;
+    margin: 0 5px;
+    min-width: 24px;
+}
+
+/* CSS for wrapping content within table cells */
+table.table td {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    max-width: 200px;
+    vertical-align: top;
+}

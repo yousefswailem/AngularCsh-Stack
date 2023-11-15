@@ -13,11 +13,13 @@
   <title>Angular</title>
 </head>
 
-<body>
-  <div style="min-width: 89vh;">
-    <app-navbar></app-navbar>
-    <router-outlet ></router-outlet>
+<body style="min-width: 89vh;">
+  <div>
+    <button *ngIf="!isLargeScreen" (click)="toggleNavbar()">Menu</button>
+    <app-navbar *ngIf="navbarVisible"></app-navbar>
+    <router-outlet></router-outlet>
   </div>
 </body>
+
 
 </html>

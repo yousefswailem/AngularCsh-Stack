@@ -41,12 +41,6 @@ export class CreateProductComponent implements OnInit {
     });
   }
 
-  refreshPage() {
-    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
-    this.router.onSameUrlNavigation = 'reload';
-    this.router.navigate(['/products']);
-  }
-  
   createProduct() {
     if (!this.createProductForm.valid) {
       console.log('Form is invalid. Please fill in all required fields.');
@@ -58,7 +52,7 @@ export class CreateProductComponent implements OnInit {
     this.productService.upsertProduct(newProduct).subscribe({
       next: (response: any) => {
         console.log('Product created successfully', response);
-        this.refreshPage();
+        this.router.navigate(['/products']);
       },
       error: (error: any) => {
         console.error('Error creating the product:', error);

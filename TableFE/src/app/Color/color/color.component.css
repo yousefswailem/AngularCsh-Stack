@@ -2,12 +2,12 @@ body {
   color: #404E67;
   background: #242948;
   font-family: 'Open Sans', sans-serif;
-  height: 94vh;
+  height: 100vh;
 }
 
+
 .table-wrapper {
-  width: 1000px;
-  margin: 30px auto;
+  margin: 150px 0px;
   background: #ffffffaa;
   padding: 20px;
   box-shadow: 0 1px 1px rgba(0, 0, 0, .05);

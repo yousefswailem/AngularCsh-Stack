@@ -1,0 +1,62 @@
+<form action="">
+
+    <body>
+        <div class="container-lg">
+            <div class="table-responsive">
+                <div class="table-wrapper">
+                    <div class="table-title">
+                        <div class="row">
+                            <div class="col-sm-8">
+                                <h2>Customer <b>Details</b></h2>
+                            </div>
+                            <div class="col-sm-4">
+                                <a href="/users" class="btn btn-info add-new"><i class="fa fa-plus"></i> Add
+                                    New User</a>
+                            </div>
+                        </div>
+                    </div>
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th (click)="groupByColumn('username')">
+                                    UserName
+                                    <span *ngIf="sortColumn === 'username'">
+                                        <i [ngClass]="sortOrder === 'asc' ? 'fa fa-arrow-up' : 'fa fa-arrow-down'"></i>
+                                    </span>
+                                </th>
+                                <th (click)="groupByColumn('name')">
+                                    Name
+                                    <span *ngIf="sortColumn === 'name'">
+                                        <i [ngClass]="sortOrder === 'asc' ? 'fa fa-arrow-up' : 'fa fa-arrow-down'"></i>
+                                    </span>
+                                </th>
+                                <th (click)="groupByColumn('password')">
+                                    Password
+                                    <span *ngIf="sortColumn === 'password'">
+                                        <i [ngClass]="sortOrder === 'asc' ? 'fa fa-arrow-up' : 'fa fa-arrow-down'"></i>
+                                    </span>
+                                </th>
+                                <th>Actions</th>
+                            </tr>
+
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let user of users | paginate: { itemsPerPage: 5, currentPage: p }">
+                                <td>{{ user.username }}</td>
+                                <td>{{ user.name }}</td>
+                                <td>{{ user.password }}</td>
+                                <td>
+                                    <button (click)="deleteUser(user.id)" style="margin-right: 5px;"
+                                        class="btn btn-danger">Delete</button>
+                                    <button [routerLink]="['edit', user.id]"
+                                        class="btn btn-success">Edit</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                </div>
+            </div>
+        </div>
+    </body>
+</form>

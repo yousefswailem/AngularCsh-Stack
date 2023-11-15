@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<body style="min-height: 94vh;">
-    <app-sidebar></app-sidebar>
+<app-sidebar></app-sidebar>
+<body style="min-height: 100vh; ">
     <div class="container-lg" *ngIf="showCreateProduct">
         <app-create-product  [@flipState]="flip"></app-create-product>
         <button class="btn btn-primary" (click)="backToProductList()">Back to list</button>
     </div>
-    <div *ngIf="!showCreateProduct" [@fade] [@flipState]="flip" class="container-lg">
+    <div style="margin-left: 20%;" *ngIf="!showCreateProduct" [@fade] [@flipState]="flip" class="container-lg">
         <div class="table-responsive">
             <div class="table-wrapper">
                 <div class="table-title">

@@ -24,6 +24,9 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { NavbarComponent } from './navbar/navbar.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { LoginComponent } from './login/login.component';
+import { ListUsersComponent } from './users/list-users/list-users.component';
+import { EditUserComponent } from './users/edit-user/edit-user.component';
 
 
 @NgModule({
@@ -45,6 +48,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     SearchBarComponent,
     SidebarComponent,
     NavbarComponent,
+    LoginComponent,
+    ListUsersComponent,
+    EditUserComponent,
   ],
   imports: [
     BrowserModule,

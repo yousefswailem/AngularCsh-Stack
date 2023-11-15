@@ -2,6 +2,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Table.Models;
 using AngularC_.Data;
+using System.IdentityModel.Tokens.Jwt;
+using Table.Helpers;
 
 namespace AngularC_.Controllers
 {
@@ -37,45 +39,72 @@ namespace AngularC_.Controllers
       return user;
     }
 
+    [HttpPost("login")]
+    public async Task<ActionResult> Login(User loginDto)
+    {
+      if (loginDto == null)
+      {
+        return BadRequest(new { Message = "Invalid request" });
+      }
+
+      var userInDb = await _context.Users.FirstOrDefaultAsync(u => u.Username == loginDto.Username);
+
+      if (userInDb == null || !PasswordHasher.VerifyPassword(userInDb.Password, loginDto.Password))
+      {
+        return Unauthorized(new { Message = "Invalid username or password" });
+      }
+
+      loginDto.Token = JWTToken.GenerateJwtToken(loginDto);
+
+        return Ok(new {
+          Token = loginDto.Token,
+            Message = "Success", UserId = userInDb.Id });
+         }
+
+
     // POST: api/users
     [HttpPost]
     public async Task<ActionResult<User>> PostUser(User user)
     {
+
+      bool usernameExists = await _context.Users.AnyAsync(u => u.Username == user.Username);
+      if (usernameExists)
+      {
+        return BadRequest(new { message = "Username is already taken." });
+      }
+
+      user.Password = PasswordHasher.HashPassword(user.Password);
+      
       _context.Users.Add(user);
       await _context.SaveChangesAsync();
 
       return CreatedAtAction(nameof(GetUser), new { id = user.Id }, user);
     }
 
-    // PUT: api/users/5
+
+
+
     [HttpPut("{id}")]
-    public async Task<IActionResult> PutUser(int id, User user)
+    public async Task<IActionResult> UpdateUser(int id, [FromBody] User updatedUser)
     {
-      if (id != user.Id)
+      var user = await _context.Users.FindAsync(id);
+      if (user == null)
       {
-        return BadRequest();
+        return NotFound(new { message = "User not found" });
       }
 
-      _context.Entry(user).State = EntityState.Modified;
+      user.Username = updatedUser.Username;
+      user.Name = updatedUser.Name;
+      user.Password = PasswordHasher.HashPassword(user.Password);
 
-      try
-      {
-        await _context.SaveChangesAsync();
-      }
-      catch (DbUpdateConcurrencyException)
-      {
-        if (!_context.Users.Any(e => e.Id == id))
-        {
-          return NotFound();
-        }
-        else
-        {
-          throw;
-        }
-      }
+      _context.Users.Update(user);
+      await _context.SaveChangesAsync();
 
-      return NoContent();
+      return Ok(new { message = "User updated successfully" });
     }
+
+
+
 
     // DELETE: api/User/5
     [HttpDelete("{id}")]

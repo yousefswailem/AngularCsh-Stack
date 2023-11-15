@@ -20,17 +20,12 @@ export class CustomersComponent implements OnInit {
     });
   }
 
-  refreshPage() {
-    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
-    this.router.onSameUrlNavigation = 'reload';
-    this.router.navigate(['/customers']);
-  }
 
   deleteCustomer(customerId: number) {
     if (confirm('Are you sure you want to delete this customer?')) {
       this.customerService.deleteCustomer(customerId).subscribe(() => {
         console.log('Customer deleted successfully');
-        this.refreshPage();
+        this.router.navigate(['/customers']);
       });
     }
   }

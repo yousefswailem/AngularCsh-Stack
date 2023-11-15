@@ -13,6 +13,10 @@ import { CustomersComponent } from './Customer/customers/customers.component';
 import { CustomerCreateComponent } from './Customer/customers-create/customers-create.component';
 import { CustomerEditComponent } from './Customer/customers-edit/customers-edit.component';
 import { UsersComponent } from './users/users.component';
+import { LoginComponent } from './login/login.component';
+import { ListUsersComponent } from './users/list-users/list-users.component';
+import { EditUserComponent } from './users/edit-user/edit-user.component';
+// import { authGuard } from './gaurd/auth.guard';
 
 const routes: Routes = [
   {
@@ -63,6 +67,20 @@ const routes: Routes = [
     path: 'users',
     component: UsersComponent
   },
+  { 
+    path: 'login',
+    component: LoginComponent
+    // canActivate: [authGuard]
+   },
+  { 
+    path: 'userslist',
+    component: ListUsersComponent
+   },
+  { 
+    path: 'userslist/edit/:id',
+    component: EditUserComponent
+   },
+
 ];
 
 @NgModule({
