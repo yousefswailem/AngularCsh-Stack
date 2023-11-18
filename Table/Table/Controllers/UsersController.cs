@@ -39,6 +39,8 @@ namespace AngularC_.Controllers
       return user;
     }
 
+
+
     [HttpPost("login")]
     public async Task<ActionResult> Login(User loginDto)
     {
@@ -55,9 +57,9 @@ namespace AngularC_.Controllers
       }
 
       loginDto.Token = JWTToken.GenerateJwtToken(loginDto);
-
+      
         return Ok(new {
-          Token = loginDto.Token,
+            Token = loginDto.Token,
             Message = "Success", UserId = userInDb.Id });
          }
 
@@ -74,10 +76,12 @@ namespace AngularC_.Controllers
       }
 
       user.Password = PasswordHasher.HashPassword(user.Password);
+
+      var token = JWTToken.GenerateJwtToken(user);
+      user.Token = token;
       
       _context.Users.Add(user);
       await _context.SaveChangesAsync();
-
       return CreatedAtAction(nameof(GetUser), new { id = user.Id }, user);
     }
 

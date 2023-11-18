@@ -33,11 +33,9 @@ builder.Services.AddCors(options =>
 builder.Services.AddControllers().AddJsonOptions(options =>
 {
   options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
-  options.JsonSerializerOptions.WriteIndented = true; // For indented JSON output
+  options.JsonSerializerOptions.WriteIndented = true; 
 });
-
-
-var key = Encoding.ASCII.GetBytes("YourSecretKeyHere"); // Replace with your secret key
+var key = Encoding.ASCII.GetBytes("SecretKey.....");
 builder.Services.AddAuthentication(x =>
 {
   x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -55,6 +53,7 @@ builder.Services.AddAuthentication(x =>
     ValidateAudience = false
   };
 });
+
 var app = builder.Build();
 
 // Middleware and routing
@@ -64,7 +63,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseRouting();
-app.UseCors("AllowAngularApp"); // Enable CORS
+app.UseCors("AllowAngularApp");
 app.UseAuthentication();
 app.UseAuthorization();
 
