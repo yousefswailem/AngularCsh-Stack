@@ -21,7 +21,6 @@ import { NgSelectModule } from '@ng-select/ng-select';
 import { UsersComponent } from './users/users.component';
 import { SearchBarComponent } from './searchbar/searchbar.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
-import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { NavbarComponent } from './navbar/navbar.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginComponent } from './login/login.component';

@@ -39,7 +39,7 @@ export class UsersComponent implements OnInit {
 
     this.userService.createUser(this.newUser).subscribe({
       next: (response: User) => {
-        this.router.navigate(['/userlist']);
+        this.router.navigate(['/login']);
       },
       error: (error: any) => {
         if (error.status === 400 && error.error.message === 'Username is already taken.') {

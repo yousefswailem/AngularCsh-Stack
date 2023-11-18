@@ -8,7 +8,6 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace AngularC_.Controllers
 {
-  [Authorize]
   [Route("api/users")]
   [ApiController]
   public class UserController : ControllerBase

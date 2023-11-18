@@ -7,7 +7,6 @@ using Table.Models;
 
 namespace Table.Controllers
 {
-  [Authorize]
   [EnableCors("AllowAngularApp")]
   [Route("api/products")]
   [ApiController]

@@ -93,8 +93,6 @@ const routes: Routes = [
   {
     path: 'users',
     component: UsersComponent,
-    canActivate: [authGuard(authService)],
-
   },
   {
     path: 'login',
