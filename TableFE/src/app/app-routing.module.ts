@@ -16,70 +16,102 @@ import { UsersComponent } from './users/users.component';
 import { LoginComponent } from './login/login.component';
 import { ListUsersComponent } from './users/list-users/list-users.component';
 import { EditUserComponent } from './users/edit-user/edit-user.component';
-// import { authGuard } from './gaurd/auth.guard';
+import { AuthService } from './Authentication Service/auth.service';
+import { authGuard } from './guards/auth.guard';
+
+const authService = new AuthService();
 
 const routes: Routes = [
   {
     path: 'stores',
-    component: StoresComponent
+    component: StoresComponent,
+    canActivate: [authGuard(authService)],
+
   },
   {
     path: 'stores/create',
-    component: StoreCreateComponent
+    component: StoreCreateComponent,
+    canActivate: [authGuard(authService)],
+
   },
   {
     path: 'stores/edit/:id', // Adjust the route as needed
-    component: StoreEditComponent
+    component: StoreEditComponent,
+    canActivate: [authGuard(authService)],
+
   },
   {
-    path: 'products', component: ProductsComponent
+    path: 'products', component: ProductsComponent,
+    canActivate: [authGuard(authService)],
+
   },
   {
-    path: 'products/create', component: CreateProductComponent
+    path: 'products/create', component: CreateProductComponent,
+    canActivate: [authGuard(authService)],
+
   },
   {
     path: 'products/edit/:id', // Adjust the route as needed
-    component: ProductEditComponent
+    component: ProductEditComponent,
+    canActivate: [authGuard(authService)],
+
   },
   {
     path: 'colors', // Adjust the route as needed
-    component: ColorsComponent
+    component: ColorsComponent,
+    canActivate: [authGuard(authService)],
+
   },
   {
-    path: 'colors/create', component: CreateColorComponent
+    path: 'colors/create', component: CreateColorComponent,
+    canActivate: [authGuard(authService)],
+
+
   },
   {
-    path: 'colors/edit/:id', component: ColorEditComponent
+    path: 'colors/edit/:id', component: ColorEditComponent,
+    canActivate: [authGuard(authService)],
+
   },
   {
     path: 'customers',
-    component: CustomersComponent
+    component: CustomersComponent,
+    canActivate: [authGuard(authService)],
+
   },
   {
     path: 'customers/create',
-    component: CustomerCreateComponent
+    component: CustomerCreateComponent,
+    canActivate: [authGuard(authService)],
+
   },
   {
     path: 'customers/edit/:id', // Adjust the route as needed
-    component: CustomerEditComponent
+    component: CustomerEditComponent,
+    canActivate: [authGuard(authService)],
   },
   {
     path: 'users',
-    component: UsersComponent
+    component: UsersComponent,
+    canActivate: [authGuard(authService)],
+
   },
-  { 
+  {
     path: 'login',
-    component: LoginComponent
-    // canActivate: [authGuard]
-   },
-  { 
+    component: LoginComponent,
+
+  },
+  {
     path: 'userslist',
-    component: ListUsersComponent
-   },
-  { 
+    component: ListUsersComponent,
+    canActivate: [authGuard(authService)],
+  },
+  {
     path: 'userslist/edit/:id',
-    component: EditUserComponent
-   },
+    component: EditUserComponent,
+    canActivate: [authGuard(authService)],
+
+  },
 
 ];
 

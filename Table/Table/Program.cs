@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using System.Text.Json.Serialization;
+using Table.Helpers;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -35,7 +36,10 @@ builder.Services.AddControllers().AddJsonOptions(options =>
   options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
   options.JsonSerializerOptions.WriteIndented = true; 
 });
-var key = Encoding.ASCII.GetBytes("SecretKey.....");
+
+
+var base64Key = JWTToken.GenerateSecretKey(); 
+var key = Convert.FromBase64String(base64Key);
 builder.Services.AddAuthentication(x =>
 {
   x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { User } from '../User.model';
 import { UserService } from '../user.service';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/Authentication Service/auth.service';
 
 @Component({
   selector: 'app-list-users',
@@ -13,7 +14,11 @@ export class ListUsersComponent implements OnInit{
 
   p: number = 1;
 
-  constructor(private userService: UserService, private router: Router) {}
+  constructor(
+    private userService: UserService, 
+    private router: Router,
+    private auth : AuthService
+    ) {}
 
   ngOnInit() {
     this.userService.getUsers().subscribe((users) => {
@@ -21,6 +26,9 @@ export class ListUsersComponent implements OnInit{
     });
   }
 
+  logout(){
+    this.auth.logout()
+  }
 
   deleteUser(userId: number) {
     if (confirm('Are you sure you want to delete this user?')) {

@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -11,13 +12,16 @@ export class AuthService {
   }
 
   // Retrieve the token
-  getToken(): string | null {
+  getToken() {
     return localStorage.getItem('token');
   }
 
   // Check if the user is logged in
- isLoggedIn(): boolean {
-    return !!localStorage.getItem('token');
+  isLoggedIn(): boolean {
+    if (!!localStorage.getItem('token')) {
+      return true
+    }
+    return false
   }
 
   // Logout the user

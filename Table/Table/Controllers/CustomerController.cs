@@ -5,11 +5,13 @@ using Table.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
 using System.Linq;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Table.Controllers
 {
   [EnableCors("AllowAngularApp")]
   [Route("api/customers")]
+  [Authorize]
   [ApiController]
   public class CustomerController : ControllerBase
   {
